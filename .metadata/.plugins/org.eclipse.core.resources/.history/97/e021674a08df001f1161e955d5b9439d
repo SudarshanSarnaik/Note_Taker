@@ -1,0 +1,19 @@
+package com.helper;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+public class TransictionProvider {
+    private static final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NoteApp");
+    private static final EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+    public static EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public static void closeTransaction() {
+        if (entityManager != null) entityManager.close();
+        if (entityManagerFactory != null) entityManagerFactory.close();
+    }
+}

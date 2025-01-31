@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="javax.persistence.EntityManager" %>
+<%@ page import="com.entities.Note" %>
+<%@ page import="com.helper.TransictionProvider" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>All Notes</title>
+</head>
+<body>
+
+<h2>All Notes</h2>
+
+<%
+    // Get a fresh// EntityManager
+    EntityManager em = TransictionProvider.getNewEntityManager();
+
+    List<Note> list = null;
+
+    try {
+        list = em.createQuery("SELECT n FROM Note n", Note.class).getResultList();
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        em.close();  // Close after retrieving data
+    }
+
+    for(Note n1 : list) {
+        out.println(n1.getId() + " - " + n1.getTitleString() + "<br>");
+    }
+%>
+
+</body>
+</html>

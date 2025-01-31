@@ -1,0 +1,51 @@
+package com.servlet;
+
+import java.io.IOException;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.entities.Note;
+import com.helper.TransictionProvider;
+
+@WebServlet("/note")
+public class NoteServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+
+        // Create a new Note object
+        Note note = new Note();
+        note.setTitleString(title);
+        note.setContentString(content);
+        note.setAddeDate(new Date());
+
+        // Get a fresh EntityManager from TransictionProvider
+        EntityManager em = TransictionProvider.getNewEntityManager();  // Correct method to get fresh EntityManager
+        
+        // Begin transaction
+        em.getTransaction().begin();
+
+        // Persist the note object
+        em.persist(note);
+
+        // Commit transaction
+        em.getTransaction().commit();
+
+        // Close the EntityManager
+        em.close();  // Close after transaction
+
+        // Optionally, close the EntityManagerFactory, but it's often done at application shutdown
+        // TransictionProvider.closeTransaction(); // Not needed here if closing EntityManager is done
+
+        // Send response
+        response.getWriter().println("<h1 style='text-align:center;'><a href='allNotes.jsp'> ALL Notes</a></h1>");
+    }
+}

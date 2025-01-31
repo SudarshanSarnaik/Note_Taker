@@ -1,0 +1,36 @@
+import java.time.LocalDate;
+import javax.persistence.*;
+import java.util.*;*;
+
+public class Driver {
+
+    public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            EntityTransaction transaction = em.getTransaction();
+            transaction.begin();
+
+            Note n1 = new Note();
+            n1.setTitle("monday");
+            n1.setContent("I am doing good things");
+            n1.setAddeDate(new Date(2002,12,04)); 
+
+            em.persist(n1); 
+
+            transaction.commit();
+
+            System.out.println("Note saved successfully!");
+
+        } catch (PersistenceException e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            System.err.println("Error persisting Note: " + e.getMessage());
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+}

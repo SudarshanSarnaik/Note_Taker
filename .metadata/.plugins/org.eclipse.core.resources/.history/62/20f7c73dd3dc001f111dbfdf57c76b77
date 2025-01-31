@@ -1,0 +1,20 @@
+package com.entities;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="notes")
+public class Note {
+	@Id
+	private int id;
+	private String titleString;
+	private String contentString;
+    private Date addeDate;
+    
+    
+
+}

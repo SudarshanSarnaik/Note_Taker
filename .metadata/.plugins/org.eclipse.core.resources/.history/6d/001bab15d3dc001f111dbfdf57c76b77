@@ -1,0 +1,15 @@
+package com.entities;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Note {
+	
+	private int id;
+	private String titleString;
+	private String contentString;
+    private Date addeDate;
+
+}

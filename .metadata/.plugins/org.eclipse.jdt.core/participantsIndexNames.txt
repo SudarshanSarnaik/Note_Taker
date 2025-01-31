@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\Users\Sudarshan\Desktop\NoteTracker\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2389236961.index
+\NoteTaker\src\main\resources
+C:\Users\Sudarshan\Desktop\NoteTracker\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3913414311.index
+\NoteTaker\src\main\java
