@@ -36,5 +36,4 @@ The **Note Taker ** is a web-based application that allows users to create, edit
 4. Build and deploy the project on Tomcat.
 5. Access the app at `http://localhost:8080/NoteTaker/index.jsp`
 
-## License
-This project is open-source and available under the MIT License.
+
